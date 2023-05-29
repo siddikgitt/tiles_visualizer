@@ -30,22 +30,22 @@ const ChooseRoom = () => {
         <Image src={icon} />
       </Flex>
       <Flex gap={7} mt={"51px"} alignItems={"center"} justifyContent={"center"}>
-        <Box cursor={"pointer"} onClick={onOpenLShape}>
+        {/* <Box cursor={"pointer"} onClick={onOpenLShape}>
           <Image src={lshape} />
           <LShapeModal isOpen={isOpenLShape} onClose={onCloseLShape}/>
-        </Box>
+        </Box> */}
         <Box cursor={"pointer"} onClick={onOpenSquareShape}>
           <Image src={squareShape} />
           <SqrShapeModal isOpen={isOpenSquareShape} onClose={onCloseSquareShape}/>
         </Box>
-        <Box cursor={"pointer"} onClick={onOpenRectangleShape}>
+        {/* <Box cursor={"pointer"} onClick={onOpenRectangleShape}>
           <Image src={rectangleShape} />
           <RecShapeModal isOpen={isOpenRectangleShape} onClose={onCloseRectangleShape}/>
         </Box>
         <Box cursor={"pointer"} onClick={onOpenTrapeziumShape}>
           <Image src={trapeziumShape} isOpen={isOpenTrapeziumShape} onClose={onCloseTrapeziumShape}/>
           <TrapShapeModal isOpen={isOpenTrapeziumShape} onClose={onCloseTrapeziumShape}/>
-        </Box>
+        </Box> */}
       </Flex>
     </div>
   );
