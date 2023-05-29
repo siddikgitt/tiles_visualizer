@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
+import { useEffect } from "react";
 
 const SideSubMenu = ({
   loading,
@@ -33,6 +34,7 @@ const SideSubMenu = ({
   };
 
   // console.log(tilesImages);
+
 
   return (
     <div>

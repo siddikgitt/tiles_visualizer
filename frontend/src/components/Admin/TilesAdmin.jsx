@@ -102,7 +102,7 @@ const TilesAdmin = () => {
 
   const getData = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/tiles/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/tiles/`).then((res) => {
       setLoading(false);
       // console.log(res.data.data);
       setData(res.data.data);

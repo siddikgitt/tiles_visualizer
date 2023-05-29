@@ -24,7 +24,7 @@ const UsersAdmin = () => {
 
   const getData = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/login/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/login/`).then((res) => {
       setLoading(false);
       console.log(res.data.data);
       setData(res.data.data);

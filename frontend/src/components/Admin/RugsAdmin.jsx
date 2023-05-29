@@ -48,7 +48,7 @@ const RugsAdmin = () => {
 
   const getData = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/rug/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/rug/`).then((res) => {
       setLoading(false);
       setData(res.data.data);
     });

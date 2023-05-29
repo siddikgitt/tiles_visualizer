@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Vault3D = ({ url, rugTexture }) => {
+  // console.log(url, rugTexture);
   const mount = useRef(null);
   const toast = useToast();
 
@@ -374,7 +375,7 @@ const Vault3D = ({ url, rugTexture }) => {
     };
     console.log(id, obj);
     
-    axios.patch(`http://localhost:8080/vault/${id}`, obj);
+    axios.patch(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/vault/${id}`, obj);
 
   };
 

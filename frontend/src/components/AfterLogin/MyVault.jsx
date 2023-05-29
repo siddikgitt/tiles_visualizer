@@ -23,13 +23,13 @@ const MyVault = () => {
 
   const getData = () => {
     let obj = { userID: localStorage.getItem("userID") };
-    axios.post("http://localhost:8080/vault/get", obj).then((res) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/vault/get`, obj).then((res) => {
       setTemp(res.data.data);
     });
   };
 
   const deleteVault = (id) => {
-    axios.delete(`http://localhost:8080/vault/${id}`).then((res) => {
+    axios.delete(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/vault/${id}`).then((res) => {
       console.log(res.message);
       toast({
         title: "Vault Deleted",

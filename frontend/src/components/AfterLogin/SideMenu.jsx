@@ -29,7 +29,7 @@ const SideMenu = () => {
 
   const fetchTiles = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/tiles/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/tiles/`).then((res) => {
       // console.log(res.data.data);
       setLoading(false);
       setTilesArr(res.data.data);
@@ -40,7 +40,7 @@ const SideMenu = () => {
 
   const fetchRugs = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/rug").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/rug`).then((res) => {
       setLoading(false);
       setTilesArr(res.data.data);
     });
@@ -48,19 +48,21 @@ const SideMenu = () => {
 
   const fetchPlanks = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/plank").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/plank`).then((res) => {
       setLoading(false)
       setTilesArr(res.data.data);
     });
   };
 
   useEffect(() => {
-    axios.get("http://localhost:8080/tiles/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/tiles/`).then((res) => {
       // console.log(res.data.data);
       setLoading(false);
       setTilesArr(res.data.data);
       let convertedImg = convertImgFormat(res.data.data[0].img.data.data);
       setTileImg(`data:image/png;base64, ${convertedImg}`)
+      localStorage.setItem("tileImgID", res.data.data[0]._id);
+      localStorage.setItem("plankImgID", "");
     });
   }, []);
 

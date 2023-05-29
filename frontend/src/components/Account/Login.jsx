@@ -42,9 +42,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(process.env.REACT_APP_BACKEND_DEPLOYED_LINK)
+
+    console.log("data", data);
     try {
-      let res = await axios.post(`http://localhost:8080/login`, data);
+      let res = await axios.post(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/login`, data);
       let resData = await res.data;
       console.log(resData);
       if (resData) {

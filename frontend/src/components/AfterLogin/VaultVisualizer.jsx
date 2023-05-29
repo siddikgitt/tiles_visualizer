@@ -18,7 +18,6 @@ const VaultVisualizer = () => {
   const [open, setOpen] = useState(false);
   const [tilesArr, setTilesArr] = useState([]);
 
-
   const [tileImg, setTileImg] = useState("");
   const [rugImg, setRugImg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,56 +39,78 @@ const VaultVisualizer = () => {
   };
 
   const getData = () => {
-    axios.get(`http://localhost:8080/vault/${id}`).then((res) => {
-      // setRugImg(res.data.data.plankImgID.img.data.data);
-      // setTileImg(res.data.data.tileImgID.img.data.data);
-      setRugImg(
-        `data:image/png;base64, ${convertImgFormat(
-          res.data.data.rugImgID.img.data.data
-        )}`
-      );
+    console.log(id);
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/vault/${id}`)
+      .then((res) => {
+        console.log(res);
+        // setRugImg(res.data.data.plankImgID.img.data.data);
+        // setTileImg(res.data.data.tileImgID.img.data.data);
+        if (res.data.data.rugImgID != undefined) {
+          setRugImg(
+            `data:image/png;base64, ${convertImgFormat(
+              res.data.data.rugImgID.img.data.data
+            )}`
+          );
+          console.log(res.data.data.rugImgID._id);
+          localStorage.setItem("vault-rugImgID", res.data.data.rugImgID._id);
+        }
 
-      if (res.data.data.tileImgID != undefined) {
-        setTileImg(
-          `data:image/png;base64, ${convertImgFormat(
-            res.data.data.tileImgID.img.data.data
-          )}`
-        );
-      } else {
-        setTileImg(
-          `data:image/png;base64, ${convertImgFormat(
-            res.data.data.plankImgID.img.data.data
-          )}`
-        );
-      }
-    });
+        if (res.data.data.tileImgID != undefined) {
+          setTileImg(
+            `data:image/png;base64, ${convertImgFormat(
+              res.data.data.tileImgID.img.data.data
+            )}`
+          );
+          localStorage.setItem("vault-tileImgID", res.data.data.tileImgID._id);
+          localStorage.setItem("vault-plankImgID", "");
+        } else {
+          setTileImg(
+            `data:image/png;base64, ${convertImgFormat(
+              res.data.data.plankImgID.img.data.data
+            )}`
+          );
+          localStorage.setItem(
+            "vault-plankImgID",
+            res.data.data.plankImgID._id
+          );
+          localStorage.setItem("vault-tileImgID", "");
+
+        }
+      });
   };
 
   const fetchTiles = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/tiles/").then((res) => {
-      // console.log(res.data.data);
-      setLoading(false);
-      setTilesArr(res.data.data);
-      // let convertedImg = convertImgFormat(res.data.data[0].img.data.data);
-      // setTileImg(`data:image/png;base64, ${convertedImg}`)
-    });
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/tiles/`)
+      .then((res) => {
+        // console.log(res.data.data);
+        setLoading(false);
+        setTilesArr(res.data.data);
+        // let convertedImg = convertImgFormat(res.data.data[0].img.data.data);
+        // setTileImg(`data:image/png;base64, ${convertedImg}`)
+      });
   };
 
   const fetchRugs = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/rug").then((res) => {
-      setLoading(false);
-      setTilesArr(res.data.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/rug`)
+      .then((res) => {
+        setLoading(false);
+        setTilesArr(res.data.data);
+      });
   };
 
   const fetchPlanks = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/plank").then((res) => {
-      setLoading(false);
-      setTilesArr(res.data.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/plank`)
+      .then((res) => {
+        setLoading(false);
+        setTilesArr(res.data.data);
+      });
   };
 
   const onChangeTileImg = (val) => {

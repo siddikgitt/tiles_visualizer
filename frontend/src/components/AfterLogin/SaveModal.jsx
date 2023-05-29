@@ -42,7 +42,7 @@ const SaveModal = ({ isOpen, onOpen, onClose }) => {
       ...(rugImgIDLS != "" && { rugImgID: rugImgIDLS }),
     };
     console.log(obj);
-    axios.post("http://localhost:8080/vault", obj).then((res) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/vault`, obj).then((res) => {
       console.log(res.data);
       navigate("/myvault");
     });

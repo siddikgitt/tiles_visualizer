@@ -49,7 +49,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(data);
-    axios.post(`http://localhost:8080/signup`, data).then((res) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/signup`, data).then((res) => {
       if(res.data){
         navigate("/login")
       }

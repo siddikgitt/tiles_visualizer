@@ -8,8 +8,10 @@ import SaveModal from "./SaveModal";
 
 const ThreeD = ({ url, rugTexture }) => {
   
+  
   const mount = useRef(null);
   useEffect(() => {
+
     let doubleTiles = false;
     let doubleRug = false;
     

@@ -48,7 +48,7 @@ const PlanksAdmin = () => {
 
   const getData = () => {
     setLoading(true);
-    axios.get("http://localhost:8080/plank/").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_DEPLOYED_LINK}/plank`).then((res) => {
       setLoading(false);
       setData(res.data.data);
     });
